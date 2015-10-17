@@ -42,7 +42,7 @@ public class SettingsActivity extends Activity {
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.pref_general);
 
-            /*final CheckBoxPreference anywhere = (CheckBoxPreference) findPreference(getString(R.string.pref_key_anywhere));
+            final CheckBoxPreference anywhere = (CheckBoxPreference) findPreference(getString(R.string.pref_key_anywhere));
             final ListPreference distancePref = (ListPreference) findPreference(getString(R.string.pref_key_distance));
             anywhere.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
@@ -59,7 +59,7 @@ public class SettingsActivity extends Activity {
 
                     return false;
                 }
-            });*/
+            });
         }
     }
 }

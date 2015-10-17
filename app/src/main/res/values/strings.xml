@@ -13,12 +13,12 @@
     <string name="pref_title_default_address">Default Address</string>
     <string name="pref_summery_usegps">Allow GPS</string>
 
-    <integer-array name="values_distance">
+    <string-array name="values_distance">
         <item> 1610</item>
         <item> 8046</item>
         <item> 16100</item>
         <item> 804600</item>
-    </integer-array>
+    </string-array>
 
     <string-array name="entries_distance">
         <item> Below 1 mile</item>

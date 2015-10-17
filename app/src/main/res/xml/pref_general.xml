@@ -1,6 +1,5 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-
     <PreferenceCategory
         android:title="GENERAL SETTINGS">
         <SwitchPreference
@@ -9,8 +8,6 @@
             android:summary="@string/pref_summery_usegps"
             android:defaultValue="true" />
 
-        <!-- NOTE: EditTextPreference accepts EditText attributes. -->
-        <!-- NOTE: EditTextPreference's summary should be set to its value by the activity code. -->
         <EditTextPreference
             android:key="@string/pref_key_default_address"
             android:title="@string/pref_title_default_address"
@@ -19,10 +16,6 @@
             android:inputType="textCapWords"
             android:singleLine="true"
             android:maxLines="1" />
-
-        <!-- NOTE: Hide buttons to simplify the UI. Users can touch outside the dialog to
-             dismiss it. -->
-        <!-- NOTE: ListPreference's summary should be set to its value by the activity code. -->
 
     </PreferenceCategory>
 

@@ -30,7 +30,6 @@ public class SignupActivity extends Activity {
     @InjectView(R.id.signup_password) EditText mPasswordView;
     @InjectView(R.id.link_login)
     TextView mLoginLink;
-    //xxx
 
     private String mEmail;
     private String mPassword;
