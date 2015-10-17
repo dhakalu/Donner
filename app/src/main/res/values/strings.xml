@@ -1,3 +1,37 @@
 <resources>
     <string name="app_name">Donner</string>
+    <string name="login">Login</string>
+    <string name="signup">Sign Up</string>
+    <string name="pref_key_anywhere"> pref_anywhere</string>
+    <string name="pref_key_usegps"> pref_usegps</string>
+    <string name="pref_key_distance"> pref_distance</string>
+    <string name="pref_tite_default_address"> Default Address</string>
+    <string name="pref_default_address_summary"> This is the address used when gps is off</string>
+    <string name="pref_key_default_address"> pref_default_address</string>
+    <string name="pref_title_usegps"> Use GPS</string>
+
+    <integer-array name="values_distance">
+        <item> 1610</item>
+        <item> 8046</item>
+        <item> 16100</item>
+        <item> 804600</item>
+    </integer-array>
+
+    <string-array name="entries_distance">
+        <item> Below 1 mile</item>
+        <item> Below 5 miles</item>
+        <item> Below 10 miles</item>
+        <item> Below 50 miles</item>
+    </string-array>
+
+
+
+
+
+    <string-array name="org_categories">
+        <item> Health Issues</item>
+        <item> Social Injustice</item>
+        <item> Animal Rights</item>
+    </string-array>
+
 </resources>

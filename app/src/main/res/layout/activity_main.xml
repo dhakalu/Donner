@@ -9,20 +9,25 @@
 
     <TextView android:text="Hello World!" android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
-    <Button
-        android:layout_width="fill_parent"
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/button_log_in"
-        android:text="Login"
         android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/button_sign_up"/>
+        android:weightSum="2">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Sign Up"
-        android:id="@+id/button_sign_up"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/button_log_in"
+            android:text="@string/login"
+            android:layout_weight="1"/>
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/signup"
+            android:id="@+id/button_sign_up"
+            android:layout_weight="1"/>
+    </LinearLayout>
 </RelativeLayout>
