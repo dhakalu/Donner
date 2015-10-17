@@ -17,6 +17,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         if (ParseUser.getCurrentUser() == null){
+            // lol
+            int a  = 5;
             //TODO: skip this activity into main page
         }
         Button signUp = (Button) findViewById(R.id.button_sign_up);
