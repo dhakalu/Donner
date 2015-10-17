@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp"
+    android:background="@drawable/event_list_background">
+    <!-- Title-->
+    <TextView
+        android:id="@+id/org_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Org Name"
+        android:textSize="16sp"
+        android:textColor="#000"/>
+
+    <LinearLayout
+        android:id="@+id/catagory"
+        android:layout_below="@+id/org_name"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/org_catagory_image"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/location_black" />
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:id="@+id/org_catagories"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:text="Health Issues"
+            android:gravity="center"/>
+    </LinearLayout>
+
+    <!-- Location-->
+    <LinearLayout
+        android:id="@+id/location"
+        android:layout_below="@+id/catagory"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/locationImageView"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/location_black" />
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:id="@+id/org_location"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:text="2612 W Heiman Street"
+            android:gravity="center"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/viewInGalaryBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Donate"
+        android:textAllCaps="true"
+        android:textColor="@color/colorPrimary"
+        android:background="@android:color/transparent"
+        android:textSize="12sp"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="9dp"
+        android:layout_marginEnd="9dp"
+        android:layout_alignBottom="@+id/location"
+        android:layout_below="@+id/catagory" />
+
+</RelativeLayout>
