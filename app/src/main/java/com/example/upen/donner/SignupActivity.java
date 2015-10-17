@@ -13,8 +13,6 @@ import android.widget.Toast;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
 
-import java.util.TooManyListenersException;
-
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
@@ -36,7 +34,7 @@ public class SignupActivity extends Activity {
 
     private String mEmail;
     private String mPassword;
-    private String mFullname;
+    private String mFirstName;
     private String mUsername;
 
     private ProgressDialog progressDialog;
@@ -52,7 +50,7 @@ public class SignupActivity extends Activity {
             public void onClick(View v) {
                 mEmail = mEmailView.getText().toString();
                 mPassword = mPasswordView.getText().toString();
-                mFullname = mFullNameView.getText().toString();
+                mFirstName = mFullNameView.getText().toString();
                 mUsername = mUsernameView.getText().toString();
                 signup();
             }
@@ -89,7 +87,7 @@ public class SignupActivity extends Activity {
      */
     public boolean isValid(){
         boolean isValid = true;
-        if (mFullname.isEmpty()){
+        if (mFirstName.isEmpty()){
             mFullNameView.setError("Name is a required field");
             isValid = false;
         }
@@ -119,7 +117,7 @@ public class SignupActivity extends Activity {
         user.setUsername(mUsername);
         user.setEmail(mEmail);
         user.setPassword(mPassword);
-        user.put("fullname", mFullname);
+        user.put("fullname", mFirstName);
 
         user.signUpInBackground(new SignUpCallback() {
             public void done(com.parse.ParseException e) {
