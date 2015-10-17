@@ -1,10 +1,12 @@
 package com.example.upen.donner;
 
+import com.parse.ParseClassName;
 import com.parse.ParseObject;
 
 /**
  * Created by upen on 10/17/15.
  */
+@ParseClassName("Organization")
 public class Organization extends ParseObject {
 
     public String getName() {

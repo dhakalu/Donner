@@ -20,6 +20,13 @@ public class EntryActivity extends AppCompatActivity {
         }
         Button signUp = (Button) findViewById(R.id.button_sign_up);
         Button logIn = (Button) findViewById(R.id.button_log_in);
+        Button orgSignUpTest = (Button) findViewById(R.id.button_org_sign_up);
+        orgSignUpTest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(EntryActivity.this, OrgSignupActivity.class));
+            }
+        });
         logIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

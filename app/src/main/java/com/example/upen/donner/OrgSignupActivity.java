@@ -7,10 +7,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.parse.ParseUser;
+import com.parse.SaveCallback;
 import com.parse.SignUpCallback;
 
 import butterknife.ButterKnife;
@@ -19,30 +21,35 @@ import butterknife.InjectView;
 /**
  * @author Upendra Dhakal
  */
-public class SignupActivity extends Activity {
+public class OrgSignupActivity extends Activity {
 
-    @InjectView(R.id.signup_btn)
+    @InjectView(R.id.org_signup_btn)
     Button mSignupBtn;
-    @InjectView(R.id.signup_firstname) EditText mFullNameView;
-    @InjectView(R.id.signup_lastlname) EditText mLastNameViews;
-    @InjectView(R.id.signup_username) EditText mUsernameView;
-    @InjectView(R.id.signup_email) EditText mEmailView;
-    @InjectView(R.id.signup_password) EditText mPasswordView;
-    @InjectView(R.id.link_login)
+    @InjectView(R.id.org_signup_login_name) EditText mLoginNameView;
+    @InjectView(R.id.org_signup_name) EditText mSignUpNameView;
+    @InjectView(R.id.org_signup_address) EditText mAddressView;
+    @InjectView(R.id.org_signup_email) EditText mEmailView;
+    @InjectView(R.id.org_signup_password) EditText mPasswordView;
+    @InjectView(R.id.org_signup_phone) EditText mPhoneView;
+    @InjectView(R.id.org_spinner_categories) Spinner mCategorySpinner;
+    @InjectView(R.id.org_link_login)
     TextView mLoginLink;
 
     private String mEmail;
     private String mPassword;
-    private String mFirstName;
-    private String mLastName;
-    private String mUsername;
+    private String mOrgName;
+    private String mLocation;
+    private String mLoginName;
+    private String mPhoneNumber;
+    private String mCategory;
+
 
     private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.signup_page);
+        setContentView(R.layout.activity_org_signup);
         ButterKnife.inject(this);
 
         mSignupBtn.setOnClickListener(new View.OnClickListener() {
@@ -50,9 +57,11 @@ public class SignupActivity extends Activity {
             public void onClick(View v) {
                 mEmail = mEmailView.getText().toString();
                 mPassword = mPasswordView.getText().toString();
-                mFirstName = mFullNameView.getText().toString();
-                mLastName = mLastNameViews.getText().toString();
-                mUsername = mUsernameView.getText().toString();
+                mOrgName = mSignUpNameView.getText().toString();
+                mLocation = mAddressView.getText().toString();
+                mLoginName = mLoginNameView.getText().toString();
+                mPhoneNumber = mPhoneView.getText().toString();
+                mCategory = mCategorySpinner.getSelectedItem().toString();
                 signup();
             }
         });
@@ -60,7 +69,7 @@ public class SignupActivity extends Activity {
         mLoginLink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
+                Intent intent = new Intent(OrgSignupActivity.this, LoginActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
             }
@@ -88,17 +97,13 @@ public class SignupActivity extends Activity {
      */
     public boolean isValid(){
         boolean isValid = true;
-        if (mFirstName.isEmpty()){
-            mFullNameView.setError("First name is a required field");
-            isValid = false;
-        }
-        if(mLastName.isEmpty()){
-            mLastNameViews.setError("Last name required");
+        if (mOrgName.isEmpty()){
+            mSignUpNameView.setError("Name is a required field");
             isValid = false;
         }
 
-        if (mUsername.isEmpty()){
-            mUsernameView.setError("Username is a required field");
+        if (mLoginName.isEmpty()){
+            mLoginNameView.setError("Username is a required field");
             isValid = false;
         }
 
@@ -111,6 +116,14 @@ public class SignupActivity extends Activity {
             mPasswordView.setError("Password must have atleast 5 characters");
             isValid = false;
         }
+        if (mPhoneNumber.isEmpty() || mPhoneNumber.length() < 10){
+            mPhoneView.setError("Valid Phone number needed");
+            isValid = false;
+        }
+        if (mLocation.isEmpty()){
+            mAddressView.setError("Address needed.");
+            isValid = false;
+        }
         return isValid;
     }
 
@@ -118,37 +131,42 @@ public class SignupActivity extends Activity {
      * This method puts the user into the database
      */
     public void putUserInDataBase(){
-        ParseUser user = new ParseUser();
-        user.setUsername(mUsername);
+        Organization user = new Organization();
+        user.setLoginName(mLoginName);
         user.setEmail(mEmail);
-        user.setPassword(mPassword);
-        user.put("first_name", mFirstName);
-        user.put("last_name", mLastName);
+        user.setLoginPassword(mPassword);
+        user.setName(mOrgName);
+        user.setPhone(mPhoneNumber);
+        user.setLocation(mLocation);
+        user.setCatogery(mCategory);
 
-        user.signUpInBackground(new SignUpCallback() {
+        user.saveInBackground(new SaveCallback() {
             public void done(com.parse.ParseException e) {
                 progressDialog.dismiss();
                 if (e == null) {
                     resetForm();
-                    Toast.makeText(SignupActivity.this, "Signup Sucess", Toast.LENGTH_LONG).show();
+                    Toast.makeText(OrgSignupActivity.this, "Signup Sucess", Toast.LENGTH_LONG).show();
                     startMainActivity();
                 } else {
-                    Toast.makeText(SignupActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(OrgSignupActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
                 }
             }
         });
     }
 
     public void startMainActivity(){
-        Intent intent = new Intent(SignupActivity.this, MainActivity.class);
+        Intent intent = new Intent(OrgSignupActivity.this, MainActivity.class);
         startActivity(intent);
         finish();
     }
 
     public void resetForm(){
         mPasswordView.setText("");
-        mUsernameView.setText("");
-        mFullNameView.setText("");
+        mLoginNameView.setText("");
+        mSignUpNameView.setText("");
         mEmailView.setText("");
+        mPhoneView.setText("");
+        mAddressView.setText("");
     }
 }
+

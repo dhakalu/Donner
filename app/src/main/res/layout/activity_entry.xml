@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:weightSum="2">
+        android:weightSum="3">
 
         <Button
             android:layout_width="0dp"
@@ -28,6 +28,12 @@
             android:layout_height="wrap_content"
             android:text="@string/signup"
             android:id="@+id/button_sign_up"
+            android:layout_weight="1"/>
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/signup"
+            android:id="@+id/button_org_sign_up"
             android:layout_weight="1"/>
     </LinearLayout>
 </RelativeLayout>

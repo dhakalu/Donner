@@ -37,4 +37,6 @@
         <item> Animal Rights</item>
     </string-array>
 
+    <string name="title_activity_org_signup">OrgSignupActivity</string>
+
 </resources>
