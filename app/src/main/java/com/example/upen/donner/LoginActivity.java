@@ -1,7 +1,6 @@
 package com.example.upen.donner;
 
 import android.app.Activity;
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -70,8 +69,8 @@ public class LoginActivity extends Activity {
                     if (e == null){
                         Toast.makeText(LoginActivity.this, "Login Sucess", Toast.LENGTH_LONG).show();
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
+                        finish();
                     } else{
                         Toast.makeText(LoginActivity.this, "Invalid username/ password", Toast.LENGTH_LONG).show();
                     }

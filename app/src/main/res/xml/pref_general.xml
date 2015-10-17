@@ -1,0 +1,51 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <PreferenceCategory
+        android:title="GENERAL SETTINGS">
+        <SwitchPreference
+            android:key="@string/pref_key_usegps"
+            android:title="@string/pref_title_usegps"
+            android:summary="@string/pref_summery_usegps"
+            android:defaultValue="true" />
+
+        <!-- NOTE: EditTextPreference accepts EditText attributes. -->
+        <!-- NOTE: EditTextPreference's summary should be set to its value by the activity code. -->
+        <EditTextPreference
+            android:key="@string/pref_key_default_address"
+            android:title="@string/pref_title_default_address"
+            android:defaultValue="2612 W Heiman Street"
+            android:selectAllOnFocus="true"
+            android:inputType="textCapWords"
+            android:singleLine="true"
+            android:maxLines="1" />
+
+        <!-- NOTE: Hide buttons to simplify the UI. Users can touch outside the dialog to
+             dismiss it. -->
+        <!-- NOTE: ListPreference's summary should be set to its value by the activity code. -->
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="DISTANCE SETTINGS">
+
+        <CheckBoxPreference
+            android:id="@+id/show_anywhere"
+            android:key="@string/pref_key_anywhere"
+            android:summary="Shows events happening all over the world"
+            android:title="Anywhere"
+            android:defaultValue="false"/>
+
+        <ListPreference
+            android:id="@+id/distance"
+            android:disableDependentsState="true"
+            android:key="@string/pref_key_distance"
+            android:entryValues="@array/values_distance"
+            android:entries="@array/entries_distance"
+            android:title="@string/pref_title_distance"
+            android:summary="Show events within this range"
+            android:defaultValue="1"/>
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

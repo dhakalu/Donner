@@ -11,9 +11,6 @@ public class Application extends android.app.Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        //ParseObject.registerSubclass(Event.class);
-        Parse.initialize(this, "HFqIhFYZRk05b6ibci3XwmL0ltlmLaEojZ1DDFvf", "JAtMNyevfQv7KOJLgujBs1jqqB3JYCq56ikIValo");
-        //PushService.setDefaultPushCallback(this, MainActivity.class);
-        //ParseInstallation.getCurrentInstallation().saveInBackground();
+        Parse.initialize(this, "e4zSvaDk4Lwk65KwPtdnIFwA63aNjvGp0uNfHJXS", "QBFe3b3HeMouEwkv1gSSSJVFatKInG55piacpMfV");
     }
 }

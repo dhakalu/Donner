@@ -23,8 +23,8 @@ public class SignupActivity extends Activity {
 
     @InjectView(R.id.signup_btn)
     Button mSignupBtn;
-    @InjectView(R.id.signup_firstname)
-    EditText mFullNameView;
+    @InjectView(R.id.signup_firstname) EditText mFullNameView;
+    @InjectView(R.id.signup_lastlname) EditText mLastNameViews;
     @InjectView(R.id.signup_username) EditText mUsernameView;
     @InjectView(R.id.signup_email) EditText mEmailView;
     @InjectView(R.id.signup_password) EditText mPasswordView;
@@ -35,6 +35,7 @@ public class SignupActivity extends Activity {
     private String mEmail;
     private String mPassword;
     private String mFirstName;
+    private String mLastName;
     private String mUsername;
 
     private ProgressDialog progressDialog;
@@ -51,6 +52,7 @@ public class SignupActivity extends Activity {
                 mEmail = mEmailView.getText().toString();
                 mPassword = mPasswordView.getText().toString();
                 mFirstName = mFullNameView.getText().toString();
+                mLastName = mLastNameViews.getText().toString();
                 mUsername = mUsernameView.getText().toString();
                 signup();
             }
@@ -117,7 +119,8 @@ public class SignupActivity extends Activity {
         user.setUsername(mUsername);
         user.setEmail(mEmail);
         user.setPassword(mPassword);
-        user.put("fullname", mFirstName);
+        user.put("first_name", mFirstName);
+        user.put("last_name", mLastName);
 
         user.signUpInBackground(new SignUpCallback() {
             public void done(com.parse.ParseException e) {
@@ -135,8 +138,8 @@ public class SignupActivity extends Activity {
 
     public void startMainActivity(){
         Intent intent = new Intent(SignupActivity.this, MainActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
+        finish();
     }
 
     public void resetForm(){
