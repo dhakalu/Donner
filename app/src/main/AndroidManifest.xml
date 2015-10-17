@@ -28,11 +28,11 @@
         <activity android:name=".SettingsActivity" >
         </activity>
         <activity
-            android:name=".OrgSignupActivity"
-            android:label="@string/title_activity_org_signup"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:name=".OrgSignupActivity">
         </activity>
-        <activity android:name=".PaymentsActivity" >
+        <activity android:name=".PaymentsActivity">
+            <uses-permission android:name="android.permission.INTERNET" />
+            <uses-permission android:name="android.permission.READ_PHONE_STATE" />
         </activity>
     </application>
 
