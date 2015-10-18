@@ -46,6 +46,7 @@ public class PaymentsActivity extends AppCompatActivity implements View.OnClickL
 
     private Organization thisOrg;
     private String email;
+    private String orgName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,7 +67,9 @@ public class PaymentsActivity extends AppCompatActivity implements View.OnClickL
                 if (e == null) {
                     thisOrg = list.get(0);
                     email = thisOrg.getEmail();
+                    orgName = thisOrg.getName();
                     Log.e("Upen", email);
+                    Log.e("Upen", orgName);
                 }else{
                     Log.e("Upen", e.getMessage());
                 }
@@ -250,6 +253,9 @@ public class PaymentsActivity extends AppCompatActivity implements View.OnClickL
         PayPalPayment payment = new PayPalPayment();
         // Sets the currency type for this payment.
         payment.setCurrencyType("USD");
+        // Sets the merchant name. This is the name of your Application or
+        // Company.
+        payment.setMerchantName(orgName);
         // Sets the recipient for the payment. This can also be a phone
         // number.
         //String email = thisOrg.getEmail();
@@ -279,9 +285,7 @@ public class PaymentsActivity extends AppCompatActivity implements View.OnClickL
 
         // Sets the PayPalPayment invoice data.
         payment.setInvoiceData(invoice);
-        // Sets the merchant name. This is the name of your Application or
-        // Company.
-        payment.setMerchantName(thisOrg.getName());
+
 
 
         // Use checkout to create our Intent.

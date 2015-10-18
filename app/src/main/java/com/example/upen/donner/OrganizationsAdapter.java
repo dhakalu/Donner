@@ -1,11 +1,15 @@
 package com.example.upen.donner;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.location.Location;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,8 +44,28 @@ public class OrganizationsAdapter extends RecyclerView.Adapter<OrganizationsAdap
         final Organization currOrg = list.get(position);
         holder.mOrgNameView.setText(currOrg.getName());
         holder.mOrgCategoryView.setText(currOrg.getCatogery());
-        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(activity);
-        String[] distance = DistanceUtils.getDistance(pref.getString(activity.getString(R.string.pref_key_default_address), "37208"), currOrg.getLocation());
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(activity);
+        boolean usesGps = sharedPreferences.getBoolean(activity.getString(R.string.pref_key_usegps), false);
+        String defaultAddress = sharedPreferences.getString(
+                activity.getString(R.string.pref_key_default_address), Constants.DEFAULT_ADDRESS);
+        if (usesGps){
+            LocationManager locMan = (LocationManager) activity.getSystemService(Context.LOCATION_SERVICE);
+            Location loc = null;
+            try {
+                loc = locMan.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+            }catch(SecurityException e){
+                e.printStackTrace();
+                Log.e("UpenYouFool", e.toString());
+            }
+            double latitude;
+            double longitude;
+            if ( loc != null){
+                latitude = loc.getLatitude();
+                longitude = loc.getLongitude();
+                defaultAddress = "" + latitude + "," + longitude;
+            }
+        }
+        String[] distance = DistanceUtils.getDistance(defaultAddress, currOrg.getLocation());
         holder.mOrgLocationView.setText(currOrg.getLocation() + "(" +distance[1] + " / "+ distance[2]+")");
         holder.mAmountView.setText("$" + currOrg.getAmount());
         holder.mOrgNameView.setOnClickListener(new View.OnClickListener() {

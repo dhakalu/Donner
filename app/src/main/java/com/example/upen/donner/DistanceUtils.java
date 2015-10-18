@@ -2,6 +2,7 @@ package com.example.upen.donner;
 
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -70,6 +71,7 @@ public class DistanceUtils {
                     .build();
             try {
                 URL url = new URL(builtUri.toString());
+                Log.e("Upen", url.toString());
                 urlConnection = (HttpURLConnection) url.openConnection();
                 urlConnection.setRequestMethod("GET");
                 urlConnection.connect();

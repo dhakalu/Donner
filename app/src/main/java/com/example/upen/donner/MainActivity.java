@@ -1,7 +1,10 @@
 package com.example.upen.donner;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.location.Location;
+import android.location.LocationManager;
 import android.preference.PreferenceManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -41,11 +44,24 @@ public class MainActivity extends AppCompatActivity {
         defaultDistance = Integer.parseInt(distance);
         isAnywhere = sharedPreferences.getBoolean(getString(R.string.pref_key_anywhere), true);
         usesGps = sharedPreferences.getBoolean(getString(R.string.pref_key_usegps), false);
+        defaultAddress = sharedPreferences.getString(
+                getString(R.string.pref_key_default_address), Constants.DEFAULT_ADDRESS);
         if (usesGps){
-
-        } else {
-
-            defaultAddress = sharedPreferences.getString(getString(R.string.pref_key_default_address), Constants.DEFAULT_ADDRESS);
+            LocationManager locMan = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+            Location loc = null;
+            try {
+                loc = locMan.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+            }catch(SecurityException e){
+                e.printStackTrace();
+                Log.e("UpenYouFool", e.toString());
+            }
+            double latitude;
+            double longitude;
+            if ( loc != null){
+                latitude = loc.getLatitude();
+                longitude = loc.getLongitude();
+                defaultAddress = "" + latitude + "," + longitude;
+            }
         }
         Log.e("Upen", defaultAddress);
         setContentView(R.layout.activity_main);

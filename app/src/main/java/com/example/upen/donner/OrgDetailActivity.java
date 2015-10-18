@@ -2,7 +2,9 @@ package com.example.upen.donner;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import com.parse.FindCallback;
@@ -39,13 +41,23 @@ public class OrgDetailActivity extends Activity {
         parseQuery.findInBackground(new FindCallback<Organization>() {
             @Override
             public void done(List<Organization> list, ParseException e) {
-                if (e == null){
+                if (e == null) {
                     thisOrg = list.get(0);
                     mOrgCategoryView.setText(thisOrg.getCatogery());
                     mOrgLocationView.setText(thisOrg.getLocation());
                     mOrgName.setText(thisOrg.getName());
                     mOrgDescriptionView.setText(thisOrg.getDescription());
                 }
+            }
+        });
+
+        mOrgCategoryView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Uri gmnIntentUri = Uri.parse("geo:0,0?q=" + thisOrg.getLocation());
+                Intent intent = new Intent(Intent.ACTION_VIEW, gmnIntentUri);
+                intent.setPackage("com.google.android.apps.maps");
+                startActivity(intent);
             }
         });
     }
