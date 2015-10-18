@@ -25,7 +25,7 @@
             android:id="@+id/org_catagory_image"
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:src="@drawable/location_black" />
+            android:src="@drawable/chategory_black" />
         <TextView
             android:layout_marginLeft="10dp"
             android:id="@+id/org_catagories"
@@ -67,7 +67,7 @@
             android:id="@+id/amountImageView"
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:src="@drawable/location_black" />
+            android:src="@drawable/donation_black" />
         <TextView
             android:layout_marginLeft="10dp"
             android:id="@+id/org_amount"

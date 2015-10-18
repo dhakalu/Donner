@@ -27,11 +27,20 @@
             android:key="@string/pref_key_anywhere"
             android:summary="Shows events happening all over the world"
             android:title="Anywhere"
-            android:defaultValue="false"/>
+            android:defaultValue="true"/>
 
         <ListPreference
             android:id="@+id/distance"
             android:disableDependentsState="true"
+            android:key="@string/pref_key_distance"
+            android:entryValues="@array/values_distance"
+            android:entries="@array/entries_distance"
+            android:title="@string/pref_title_distance"
+            android:summary="Show events within this range"
+            android:defaultValue="1"/>
+
+        <ListPreference
+            android:id="@+id/category"
             android:key="@string/pref_key_distance"
             android:entryValues="@array/values_distance"
             android:entries="@array/entries_distance"
