@@ -15,10 +15,11 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
-        <activity android:name=".EntryActivity">
+        <activity android:name=".EntryActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -33,7 +34,7 @@
         <activity
             android:name=".OrgSignupActivity">
         </activity>
-        <activity android:name=".PaymentsActivity">
+        <activity android:name=".PaymentsActivity" android:parentActivityName=".MainActivity">
             <uses-permission android:name="android.permission.INTERNET" />
             <uses-permission android:name="android.permission.READ_PHONE_STATE" />
         </activity>

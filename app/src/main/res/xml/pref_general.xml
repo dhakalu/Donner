@@ -39,14 +39,14 @@
             android:summary="Show events within this range"
             android:defaultValue="1"/>
 
-        <ListPreference
+        <!--<ListPreference
             android:id="@+id/category"
             android:key="@string/pref_key_distance"
             android:entryValues="@array/values_distance"
             android:entries="@array/entries_distance"
             android:title="@string/pref_title_distance"
             android:summary="Show events within this range"
-            android:defaultValue="1"/>
+            android:defaultValue="1"/>-->
 
     </PreferenceCategory>
 

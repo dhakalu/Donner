@@ -215,7 +215,7 @@ public class PaymentsActivity extends AppCompatActivity implements View.OnClickL
         launchPayPalButton.setOnClickListener(this);
         // add it to the layout
         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
-                RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+                RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
         params.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
         params.bottomMargin = 10;
 

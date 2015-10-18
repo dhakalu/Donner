@@ -8,6 +8,14 @@
     android:background="@drawable/entry_background"
     android:id="@+id/relative_layout_main" tools:context=".MainActivity">
 
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@mipmap/ic_launcher"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="45dp" />
+
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -24,7 +32,7 @@
             android:layout_marginLeft="-6dp"
             android:layout_weight="1"
             android:background="#0000"
-            android:textColor="#FFF"
+            android:textColor="@color/colorPrimaryDark"
             style="?android:attr/borderlessButtonStyle"/>
 
         <Button
@@ -36,7 +44,7 @@
             android:id="@+id/button_sign_up"
             android:layout_weight="1"
             android:background="#0000"
-            android:textColor="#FFF"
+            android:textColor="@color/colorPrimaryDark"
             style="?android:attr/borderlessButtonStyle"/>
         <Button
             android:layout_width="0dp"
@@ -47,7 +55,7 @@
             android:id="@+id/button_org_sign_up"
             android:layout_margin="0dp"
             android:layout_weight="1"
-            android:textColor="#FFF"
+            android:textColor="@color/colorPrimaryDark"
             android:background="#0000"
             style="?android:attr/borderlessButtonStyle"/>
     </LinearLayout>

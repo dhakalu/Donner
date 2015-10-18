@@ -68,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
             startActivity(settingsIntent);
         } else if (id == R.id.action_logout){
             ParseUser.logOutInBackground();
+            startActivity(new Intent(this, EntryActivity.class));
             finish();
         } else  if (id == R.id.action_refresh){
             finish();
@@ -100,5 +101,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
 
 }

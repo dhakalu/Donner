@@ -10,7 +10,7 @@
     <string name="pref_default_address_summary"> This is the address used when gps is off</string>
     <string name="pref_key_default_address"> pref_default_address</string>
     <string name="pref_title_usegps"> Use GPS</string>
-    <string name="pref_title_distance">Distance Away form me</string>
+    <string name="pref_title_distance">Distance Away from me</string>
     <string name="pref_title_default_address">Default Address</string>
     <string name="pref_summery_usegps">Allow GPS</string>
 
@@ -18,7 +18,7 @@
         <item> 1610</item>
         <item> 8046</item>
         <item> 16100</item>
-        <item> 804600</item>
+        <item> 80460</item>
     </string-array>
 
     <string-array name="entries_distance">

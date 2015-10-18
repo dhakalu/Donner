@@ -11,13 +11,15 @@
         android:layout_height="wrap_content"
         android:paddingTop="56dp"
         android:paddingLeft="24dp"
-        android:paddingRight="24dp">
+        android:paddingRight="24dp"
+        android:weightSum="1">
 
         <ImageView android:src="@mipmap/ic_launcher"
-            android:layout_width="wrap_content"
+            android:layout_width="68dp"
             android:layout_height="100dp"
             android:layout_marginBottom="24dp"
-            android:layout_gravity="center_horizontal" />
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="0.18" />
 
         <!--  First  Name Label -->
         <android.support.design.widget.TextInputLayout

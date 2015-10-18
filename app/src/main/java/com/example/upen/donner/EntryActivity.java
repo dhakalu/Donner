@@ -13,11 +13,11 @@ public class EntryActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_entry);
         if (ParseUser.getCurrentUser() != null){
-           startActivity(new Intent(this, MainActivity.class));
+            startActivity(new Intent(this, MainActivity.class));
             finish();
         }
+        setContentView(R.layout.activity_entry);
         Button signUp = (Button) findViewById(R.id.button_sign_up);
         Button logIn = (Button) findViewById(R.id.button_log_in);
         Button orgSignUpTest = (Button) findViewById(R.id.button_org_sign_up);
@@ -35,6 +35,7 @@ public class EntryActivity extends AppCompatActivity {
                     Intent intent = new Intent(EntryActivity.this, LoginActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
+                    finish();
                 }
             }
         });
