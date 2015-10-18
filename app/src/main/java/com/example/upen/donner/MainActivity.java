@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
         if (usesGps){
 
         } else {
+
             defaultAddress = sharedPreferences.getString(getString(R.string.pref_key_default_address), Constants.DEFAULT_ADDRESS);
         }
         Log.e("Upen", defaultAddress);
