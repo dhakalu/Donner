@@ -28,11 +28,17 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     LinearLayoutManager layoutManager;
     OrganizationsAdapter adapter;
+    private String defaultAddress;
+    private boolean isAnywhere;
+    private int defaultDistance;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        defaultAddress = sharedPreferences.getString(getString(R.string.pref_key_default_address), Constants.DEFAULT_ADDRESS);
+        String distance = sharedPreferences.getString(getString(R.string.pref_key_distance), "26400");
+        defaultDistance = Integer.parseInt(distance);
 
         setContentView(R.layout.activity_main);
         if (ParseUser.getCurrentUser() == null){
@@ -74,10 +80,20 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void done(List<Organization> orgList, ParseException e) {
                 if (e == null) {
-                    adapter = new OrganizationsAdapter(MainActivity.this, orgList);
+                    if (isAnywhere) orgs = orgList;
+                    else{
+                        for (Organization currOrg: orgList){
+                            if (Integer.parseInt(DistanceUtils.getDistance(defaultAddress, currOrg.getLocation())[0]) < defaultDistance){
+                                orgs.add(currOrg);
+                            }
+                        }
+                    }
+
+                    adapter = new OrganizationsAdapter(MainActivity.this, orgs);
                     recyclerView.setAdapter(adapter);
                 }
             }
         });
     }
+
 }
