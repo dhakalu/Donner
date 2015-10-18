@@ -40,6 +40,7 @@ public class PaymentsActivity extends AppCompatActivity implements View.OnClickL
     private ProgressDialog _progressDialog;
     private boolean _paypalLibraryInit = false;
     private boolean _progressDialogRunning = false;
+    private int amount = 0;
 
     private Organization thisOrg;
     @Override
@@ -54,7 +55,7 @@ public class PaymentsActivity extends AppCompatActivity implements View.OnClickL
         query.findInBackground(new FindCallback<Organization>() {
             @Override
             public void done(List<Organization> list, ParseException e) {
-                if (e == null && thisOrg != null){
+                if (e == null && thisOrg != null) {
                     thisOrg = list.get(0);
                 }
             }
@@ -239,12 +240,13 @@ public class PaymentsActivity extends AppCompatActivity implements View.OnClickL
         payment.setCurrencyType("USD");
         // Sets the recipient for the payment. This can also be a phone
         // number.
-        payment.setRecipient("amiersmith2@gmail.com");
+        String email = thisOrg.getEmail();
+        payment.setRecipient(email);
         // Sets the amount of the payment, not including tax and shipping
         // amounts.
-        int amount = Integer.parseInt(
+        amount = Integer.parseInt(
                 ((EditText) (findViewById(R.id.text_donate_amount)))
-                .getText().toString());
+                        .getText().toString());
         BigDecimal st = new BigDecimal(amount);
         st = st.setScale(2, RoundingMode.HALF_UP);
         payment.setSubtotal(st);
@@ -267,7 +269,7 @@ public class PaymentsActivity extends AppCompatActivity implements View.OnClickL
         payment.setInvoiceData(invoice);
         // Sets the merchant name. This is the name of your Application or
         // Company.
-        payment.setMerchantName("Donner");
+        payment.setMerchantName(thisOrg.getName());
 
 
         // Use checkout to create our Intent.
@@ -290,6 +292,8 @@ public class PaymentsActivity extends AppCompatActivity implements View.OnClickL
                 String payKey = intent
                         .getStringExtra(PayPalActivity.EXTRA_PAY_KEY);
                 Toast.makeText(this, "Payment Succeeded! Thank You!", Toast.LENGTH_LONG).show();
+                thisOrg.setAmount(thisOrg.getAmount()+amount);
+                thisOrg.saveEventually();
                 break;
             case Activity.RESULT_CANCELED:
                 // The payment was canceled

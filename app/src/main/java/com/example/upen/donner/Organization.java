@@ -39,11 +39,11 @@ public class Organization extends ParseObject {
         return getString("email");
     }
 
-    private void setAmount(int amount){
+    public void setAmount(int amount){
         put("amount", amount);
     }
 
-    private int getAmount(){
+    public int getAmount(){
         return getInt("amount");
     }
 
