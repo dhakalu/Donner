@@ -31,15 +31,21 @@ public class MainActivity extends AppCompatActivity {
     private String defaultAddress;
     private boolean isAnywhere;
     private int defaultDistance;
+    private boolean usesGps;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        defaultAddress = sharedPreferences.getString(getString(R.string.pref_key_default_address), Constants.DEFAULT_ADDRESS);
         String distance = sharedPreferences.getString(getString(R.string.pref_key_distance), "26400");
         defaultDistance = Integer.parseInt(distance);
         isAnywhere = sharedPreferences.getBoolean(getString(R.string.pref_key_anywhere), true);
+        usesGps = sharedPreferences.getBoolean(getString(R.string.pref_key_usegps), false);
+        if (usesGps){
+
+        } else {
+            defaultAddress = sharedPreferences.getString(getString(R.string.pref_key_default_address), Constants.DEFAULT_ADDRESS);
+        }
         Log.e("Upen", defaultAddress);
         setContentView(R.layout.activity_main);
         if (ParseUser.getCurrentUser() == null){
