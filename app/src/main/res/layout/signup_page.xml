@@ -90,10 +90,13 @@
             android:id="@+id/signup_btn"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="10dp"
             android:layout_marginBottom="24dp"
             android:padding="12dp"
-            android:text="Create Account"/>
+            android:textColor="@color/colorPrimaryDark"
+            android:text="Create Account"
+            android:background="#0000"
+            style="?android:attr/borderlessButtonStyle"/>
 
         <TextView android:id="@+id/link_login"
             android:layout_width="fill_parent"

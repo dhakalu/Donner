@@ -141,8 +141,9 @@ public class SignupActivity extends Activity {
 
     public void startMainActivity(){
         Intent intent = new Intent(SignupActivity.this, MainActivity.class);
+        //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
-        finish();
     }
 
     public void resetForm(){

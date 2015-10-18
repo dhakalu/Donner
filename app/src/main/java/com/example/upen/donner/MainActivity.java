@@ -43,8 +43,8 @@ public class MainActivity extends AppCompatActivity {
         Log.e("Upen", defaultAddress);
         setContentView(R.layout.activity_main);
         if (ParseUser.getCurrentUser() == null){
-            startActivity(new Intent(this, EntryActivity.class));
             finish();
+            startActivity(new Intent(this, EntryActivity.class));
         }
         recyclerView = (RecyclerView) findViewById(R.id.org_lists);
         layoutManager = new LinearLayoutManager(this);
@@ -85,12 +85,12 @@ public class MainActivity extends AppCompatActivity {
                 if (e == null) {
 
                     if (isAnywhere) orgs = orgList;
-                    else{
-                        for (Organization currOrg: orgList){
+                    else {
+                        for (Organization currOrg : orgList) {
                             Log.e("Upen", currOrg.getLocation());
                             String dis = DistanceUtils.getDistance(defaultAddress, currOrg.getLocation())[0];
                             //Log.e("Upen", dis);
-                            if (Integer.parseInt(dis) < defaultDistance){
+                            if (Integer.parseInt(dis) < defaultDistance) {
                                 orgs.add(currOrg);
                             }
                         }

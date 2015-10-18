@@ -33,7 +33,7 @@ public class OrgSignupActivity extends Activity {
     @InjectView(R.id.org_signup_phone) EditText mPhoneView;
     @InjectView(R.id.org_spinner_categories) Spinner mCategorySpinner;
     @InjectView(R.id.org_link_login) TextView mLoginLink;
-    @InjectView(R.id.org_description) TextView mDescriptionView;
+
 
     private String mEmail;
     private String mPassword;
@@ -42,7 +42,7 @@ public class OrgSignupActivity extends Activity {
     private String mLoginName;
     private String mPhoneNumber;
     private String mCategory;
-    private String mDescription;
+    private String mDescription = "";
 
 
     private ProgressDialog progressDialog;
@@ -63,7 +63,6 @@ public class OrgSignupActivity extends Activity {
                 mLoginName = mLoginNameView.getText().toString();
                 mPhoneNumber = mPhoneView.getText().toString();
                 mCategory = mCategorySpinner.getSelectedItem().toString();
-                mDescription = mDescriptionView.getText().toString();
                 signup();
             }
         });
@@ -72,7 +71,8 @@ public class OrgSignupActivity extends Activity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(OrgSignupActivity.this, LoginActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
             }
         });
