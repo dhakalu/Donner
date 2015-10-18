@@ -31,8 +31,16 @@ public class Organization extends ParseObject {
         put("catogery", catogery);
     }
 
+    public void setDescription(String description){
+        put("description", description);
+    }
+
     public String getEmail() {
         return getString("email");
+    }
+
+    public String getDescription(){
+        return getString("description");
     }
 
     public void setEmail(String email) {

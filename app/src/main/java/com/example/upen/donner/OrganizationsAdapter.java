@@ -43,7 +43,7 @@ public class OrganizationsAdapter extends RecyclerView.Adapter<OrganizationsAdap
         holder.mOrgNameView.setText(currOrg.getName());
         holder.mOrgCategoryView.setText(currOrg.getCatogery());
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(activity);
-        String[] distance = DistanceUtils.getDistance(pref.getString(activity.getString(R.string.pref_key_default_address), ""), currOrg.getLocation());
+        String[] distance = DistanceUtils.getDistance(pref.getString(activity.getString(R.string.pref_key_default_address), "37208"), currOrg.getLocation());
         holder.mOrgLocationView.setText(currOrg.getLocation() + "(" +distance[1] + " / "+ distance[2]+")");
 
         holder.mOrgNameView.setOnClickListener(new View.OnClickListener() {
@@ -68,7 +68,9 @@ public class OrganizationsAdapter extends RecyclerView.Adapter<OrganizationsAdap
         holder.mPayPalButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                activity.startActivity(new Intent(activity, PaymentsActivity.class));
+                Intent intent = new Intent(activity, PaymentsActivity.class);
+                intent.putExtra("orgId", currOrg.getObjectId());
+                activity.startActivity(intent);
             }
         });
     }

@@ -32,8 +32,8 @@ public class OrgSignupActivity extends Activity {
     @InjectView(R.id.org_signup_password) EditText mPasswordView;
     @InjectView(R.id.org_signup_phone) EditText mPhoneView;
     @InjectView(R.id.org_spinner_categories) Spinner mCategorySpinner;
-    @InjectView(R.id.org_link_login)
-    TextView mLoginLink;
+    @InjectView(R.id.org_link_login) TextView mLoginLink;
+    @InjectView(R.id.org_description) TextView mDescriptionView;
 
     private String mEmail;
     private String mPassword;
@@ -42,6 +42,7 @@ public class OrgSignupActivity extends Activity {
     private String mLoginName;
     private String mPhoneNumber;
     private String mCategory;
+    private String mDescription;
 
 
     private ProgressDialog progressDialog;
@@ -62,6 +63,7 @@ public class OrgSignupActivity extends Activity {
                 mLoginName = mLoginNameView.getText().toString();
                 mPhoneNumber = mPhoneView.getText().toString();
                 mCategory = mCategorySpinner.getSelectedItem().toString();
+                mDescription = mDescriptionView.getText().toString();
                 signup();
             }
         });
@@ -139,6 +141,7 @@ public class OrgSignupActivity extends Activity {
         user.setPhone(mPhoneNumber);
         user.setLocation(mLocation);
         user.setCatogery(mCategory);
+        user.setDescription(mDescription);
 
         user.saveInBackground(new SaveCallback() {
             public void done(com.parse.ParseException e) {

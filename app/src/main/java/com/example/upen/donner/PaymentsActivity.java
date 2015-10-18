@@ -18,6 +18,9 @@ import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.parse.FindCallback;
+import com.parse.ParseException;
+import com.parse.ParseQuery;
 import com.paypal.android.MEP.CheckoutButton;
 import com.paypal.android.MEP.PayPal;
 import com.paypal.android.MEP.PayPalActivity;
@@ -26,6 +29,7 @@ import com.paypal.android.MEP.PayPalPayment;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.List;
 
 public class PaymentsActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -37,10 +41,25 @@ public class PaymentsActivity extends AppCompatActivity implements View.OnClickL
     private boolean _paypalLibraryInit = false;
     private boolean _progressDialogRunning = false;
 
+    private Organization thisOrg;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payments);
+        // The organisation that they are donating
+        Intent intent = getIntent();
+        String id = intent.getStringExtra("orgId");
+        ParseQuery<Organization> query = ParseQuery.getQuery("Organisation");
+        query.whereEqualTo("objectId", id);
+        query.findInBackground(new FindCallback<Organization>() {
+            @Override
+            public void done(List<Organization> list, ParseException e) {
+                if (e == null && thisOrg != null){
+                    thisOrg = list.get(0);
+                }
+            }
+        });
+
         // Initialize the library.
         if (this.isOnline()) {
             Thread libraryInitializationThread = new Thread() {
@@ -131,6 +150,7 @@ public class PaymentsActivity extends AppCompatActivity implements View.OnClickL
         }
         // If we got here, it means the library is initialized.
         // So, add the "Pay with PayPal" button to the screen
+        _progressDialog.dismiss();
         runOnUiThread(showPayPalButtonRunnable);
     }
 
