@@ -57,7 +57,7 @@
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:id="@+id/categoryImageView"
-            android:src="@drawable/location_black"
+            android:src="@drawable/chategory_black"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true" />
 
@@ -69,6 +69,13 @@
             android:layout_toLeftOf="@+id/categoryImageView"
             android:layout_toStartOf="@+id/categoryImageView"
             android:layout_marginRight="10dp"/>
+
+        <TextView
+            android:layout_marginTop="24dp"
+            android:layout_below="@id/orgCategory"
+            android:id="@+id/orgDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
 
         <Button

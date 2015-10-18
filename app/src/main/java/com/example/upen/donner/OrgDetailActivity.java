@@ -23,16 +23,19 @@ public class OrgDetailActivity extends Activity {
     @InjectView(R.id.orgCategory) TextView mOrgCategoryView;
     @InjectView(R.id.orgName) TextView mOrgName;
     @InjectView(R.id.orgLocation) TextView mOrgLocationView;
+    @InjectView(R.id.orgDescription) TextView mOrgDescriptionView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.org_details);
         ButterKnife.inject(this);
+
         Intent intent = getIntent();
         String orgId = intent.getStringExtra("id");
 
         ParseQuery<Organization> parseQuery = ParseQuery.getQuery("Organization");
+        parseQuery.whereEqualTo("objectId", orgId);
         parseQuery.findInBackground(new FindCallback<Organization>() {
             @Override
             public void done(List<Organization> list, ParseException e) {
@@ -41,6 +44,7 @@ public class OrgDetailActivity extends Activity {
                     mOrgCategoryView.setText(thisOrg.getCatogery());
                     mOrgLocationView.setText(thisOrg.getLocation());
                     mOrgName.setText(thisOrg.getName());
+                    mOrgDescriptionView.setText(thisOrg.getDescription());
                 }
             }
         });
