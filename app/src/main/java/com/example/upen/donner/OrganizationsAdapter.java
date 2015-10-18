@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.List;
@@ -64,6 +65,12 @@ public class OrganizationsAdapter extends RecyclerView.Adapter<OrganizationsAdap
 
             }
         });
+        holder.mPayPalButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activity.startActivity(new Intent(activity, PaymentsActivity.class));
+            }
+        });
     }
 
     @Override
@@ -75,12 +82,13 @@ public class OrganizationsAdapter extends RecyclerView.Adapter<OrganizationsAdap
         private TextView mOrgNameView;
         private TextView mOrgLocationView;
         private TextView mOrgCategoryView;
-
+        private Button mPayPalButton;
         public OrganizationHolder(View itemView) {
             super(itemView);
             mOrgCategoryView = (TextView) itemView.findViewById(R.id.org_catagories);
             mOrgLocationView = (TextView) itemView.findViewById(R.id.org_location);
             mOrgNameView = (TextView) itemView.findViewById(R.id.org_name);
+            mPayPalButton = (Button) itemView.findViewById(R.id.donateBtn);
         }
     }
 }
