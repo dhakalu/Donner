@@ -32,6 +32,11 @@
             android:label="@string/title_activity_org_signup"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
+
+        <activity
+            android:name=".OrgDetailActivity"
+            android:parentActivityName=".MainActivity">
+        </activity>
     </application>
 
 </manifest>

@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -33,9 +34,6 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = (RecyclerView) findViewById(R.id.org_lists);
         layoutManager = new LinearLayoutManager(this);
         updateList();
-        adapter = new OrganizationsAdapter();
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(adapter);
    }
 
     @Override
@@ -68,7 +66,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void done(List<Organization> orgList, ParseException e) {
                 if (e == null){
-                    orgs = orgList;
+                    adapter = new OrganizationsAdapter(MainActivity.this, orgList);
+                    recyclerView.setLayoutManager(layoutManager);
+                    recyclerView.setAdapter(adapter);
                 }
             }
         });
