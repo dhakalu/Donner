@@ -35,6 +35,7 @@
             android:gravity="center"/>
     </LinearLayout>
 
+
     <!-- Location-->
     <LinearLayout
         android:id="@+id/location"
@@ -55,6 +56,27 @@
             android:gravity="center"/>
     </LinearLayout>
 
+
+    <!-- Amount Raised-->
+    <LinearLayout
+        android:id="@+id/amount"
+        android:layout_below="@+id/location"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/amountImageView"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/location_black" />
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:id="@+id/org_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:text="$0"
+            android:gravity="center"/>
+    </LinearLayout>
+
     <Button
         android:id="@+id/donateBtn"
         android:layout_width="wrap_content"
@@ -69,7 +91,7 @@
         android:layout_alignParentEnd="true"
         android:layout_marginRight="9dp"
         android:layout_marginEnd="9dp"
-        android:layout_alignBottom="@+id/location"
-        android:layout_below="@+id/catagory" />
+        android:layout_below="@+id/location"
+        android:layout_alignBottom="@+id/amount" />
 
 </RelativeLayout>

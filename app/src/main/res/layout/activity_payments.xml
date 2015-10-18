@@ -8,25 +8,24 @@
     android:id="@+id/relative_layout_payments"
     tools:context="com.example.upen.donner.PaymentsActivity">
     <EditText
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="number"
         android:id="@+id/text_donate_amount"
         android:hint="Amount to donate"/>
 
     <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
         android:inputType="textMultiLine"
         android:hint="Send a message with your generous donation!"
         android:ems="10"
+        android:gravity="top"
         android:id="@+id/editText"
+        android:layout_marginTop="41dp"
         android:layout_below="@+id/text_donate_amount"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="111dp"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentStart="true" />
 
 
 </RelativeLayout>

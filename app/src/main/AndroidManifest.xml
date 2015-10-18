@@ -44,6 +44,7 @@
         </activity>
 
         <activity android:name="com.paypal.android.MEP.PayPalActivity"
+            android:parentActivityName=".MainActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"
             android:configChanges="keyboardHidden|orientation"/>
     </application>

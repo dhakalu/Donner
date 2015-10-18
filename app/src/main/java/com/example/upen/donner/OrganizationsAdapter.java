@@ -45,7 +45,7 @@ public class OrganizationsAdapter extends RecyclerView.Adapter<OrganizationsAdap
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(activity);
         String[] distance = DistanceUtils.getDistance(pref.getString(activity.getString(R.string.pref_key_default_address), "37208"), currOrg.getLocation());
         holder.mOrgLocationView.setText(currOrg.getLocation() + "(" +distance[1] + " / "+ distance[2]+")");
-
+        holder.mAmountView.setText("" + currOrg.getAmount());
         holder.mOrgNameView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -85,12 +85,14 @@ public class OrganizationsAdapter extends RecyclerView.Adapter<OrganizationsAdap
         private TextView mOrgLocationView;
         private TextView mOrgCategoryView;
         private Button mPayPalButton;
+        private TextView mAmountView;
         public OrganizationHolder(View itemView) {
             super(itemView);
             mOrgCategoryView = (TextView) itemView.findViewById(R.id.org_catagories);
             mOrgLocationView = (TextView) itemView.findViewById(R.id.org_location);
             mOrgNameView = (TextView) itemView.findViewById(R.id.org_name);
             mPayPalButton = (Button) itemView.findViewById(R.id.donateBtn);
+            mAmountView = (TextView) itemView.findViewById(R.id.org_amount);
         }
     }
 }

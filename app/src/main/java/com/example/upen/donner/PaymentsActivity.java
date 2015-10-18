@@ -21,6 +21,7 @@ import android.widget.Toast;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
+import com.parse.ParseUser;
 import com.paypal.android.MEP.CheckoutButton;
 import com.paypal.android.MEP.PayPal;
 import com.paypal.android.MEP.PayPalActivity;
@@ -47,6 +48,10 @@ public class PaymentsActivity extends AppCompatActivity implements View.OnClickL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payments);
+        if (ParseUser.getCurrentUser() == null){
+            startActivity(new Intent(this, EntryActivity.class));
+            finish();
+        }
         // The organisation that they are donating
         Intent intent = getIntent();
         String id = intent.getStringExtra("orgId");
