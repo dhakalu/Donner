@@ -10,6 +10,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,6 +44,7 @@ public class PaymentsActivity extends AppCompatActivity implements View.OnClickL
     private int amount = 0;
 
     private Organization thisOrg;
+    private String email;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,13 +52,18 @@ public class PaymentsActivity extends AppCompatActivity implements View.OnClickL
         // The organisation that they are donating
         Intent intent = getIntent();
         String id = intent.getStringExtra("orgId");
-        ParseQuery<Organization> query = ParseQuery.getQuery("Organisation");
+        Log.e("Upen", id);
+        ParseQuery<Organization> query = ParseQuery.getQuery("Organization");
         query.whereEqualTo("objectId", id);
         query.findInBackground(new FindCallback<Organization>() {
             @Override
             public void done(List<Organization> list, ParseException e) {
-                if (e == null && thisOrg != null) {
+                if (e == null) {
                     thisOrg = list.get(0);
+                    email = thisOrg.getEmail();
+                    Log.e("Upen", email);
+                }else{
+                    Log.e("Upen", e.getMessage());
                 }
             }
         });
@@ -240,7 +247,7 @@ public class PaymentsActivity extends AppCompatActivity implements View.OnClickL
         payment.setCurrencyType("USD");
         // Sets the recipient for the payment. This can also be a phone
         // number.
-        String email = thisOrg.getEmail();
+        //String email = thisOrg.getEmail();
         payment.setRecipient(email);
         // Sets the amount of the payment, not including tax and shipping
         // amounts.
@@ -253,7 +260,7 @@ public class PaymentsActivity extends AppCompatActivity implements View.OnClickL
         // Sets the payment type. This can be PAYMENT_TYPE_GOODS,
         // PAYMENT_TYPE_SERVICE, PAYMENT_TYPE_PERSONAL, or
         // PAYMENT_TYPE_NONE.
-        payment.setPaymentType(PayPal.PAYMENT_TYPE_GOODS);
+        payment.setPaymentType(PayPal.PAYMENT_TYPE_PERSONAL);
 
         // PayPalInvoiceData can contain tax and shipping amounts. It also
         // contains an ArrayList of PayPalInvoiceItem which can
@@ -280,6 +287,13 @@ public class PaymentsActivity extends AppCompatActivity implements View.OnClickL
         // This will start the library.
         startActivityForResult(checkoutIntent, REQUEST_PAYPAL_CHECKOUT);
     }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        if(requestCode == REQUEST_PAYPAL_CHECKOUT){
+            PayPalActivityResult(requestCode, resultCode, data);
+        }
+    }
+
 
     /* This method handles the PayPal Activity Results. This handles all the responses from the PayPal
      * Payments Library.
@@ -292,11 +306,14 @@ public class PaymentsActivity extends AppCompatActivity implements View.OnClickL
                 String payKey = intent
                         .getStringExtra(PayPalActivity.EXTRA_PAY_KEY);
                 Toast.makeText(this, "Payment Succeeded! Thank You!", Toast.LENGTH_LONG).show();
-                thisOrg.setAmount(thisOrg.getAmount()+amount);
+                thisOrg.setAmount(thisOrg.getAmount() + amount);
+                Log.e("Upen", "" + amount);
+                Log.e("Upen", "Success");
                 thisOrg.saveEventually();
                 break;
             case Activity.RESULT_CANCELED:
                 // The payment was canceled
+                Log.e("Upen", "Canceled");
                 Toast.makeText(this, "Payment Canceled", Toast.LENGTH_LONG).show();
                 break;
             case PayPalActivity.RESULT_FAILURE:
@@ -306,6 +323,7 @@ public class PaymentsActivity extends AppCompatActivity implements View.OnClickL
                         .getStringExtra(PayPalActivity.EXTRA_ERROR_ID);
                 String errorMessage = intent
                         .getStringExtra(PayPalActivity.EXTRA_ERROR_MESSAGE);
+                Log.e("Upen", errorMessage);
                 Toast.makeText(this, "Payment Failed: \t" + errorMessage, Toast.LENGTH_LONG).show();
         }
     }

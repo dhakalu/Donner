@@ -141,6 +141,7 @@ public class OrgSignupActivity extends Activity {
         user.setPhone(mPhoneNumber);
         user.setLocation(mLocation);
         user.setCatogery(mCategory);
+        user.setAmount(0);
         user.setDescription(mDescription);
 
         user.saveInBackground(new SaveCallback() {
