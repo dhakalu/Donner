@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.parse.FindCallback;
@@ -26,7 +27,7 @@ public class OrgDetailActivity extends Activity {
     @InjectView(R.id.orgName) TextView mOrgName;
     @InjectView(R.id.orgLocation) TextView mOrgLocationView;
     @InjectView(R.id.orgDescription) TextView mOrgDescriptionView;
-
+    @InjectView(R.id.donateBtn) Button mDonateBtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,14 +52,23 @@ public class OrgDetailActivity extends Activity {
             }
         });
 
-        mOrgCategoryView.setOnClickListener(new View.OnClickListener() {
+        mOrgLocationView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Uri gmnIntentUri = Uri.parse("geo:0,0?q=" + thisOrg.getLocation());
                 Intent intent = new Intent(Intent.ACTION_VIEW, gmnIntentUri);
                 intent.setPackage("com.google.android.apps.maps");
+            }
+        });
+
+        mDonateBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(OrgDetailActivity.this, PaymentsActivity.class);
+                intent.putExtra("orgId", thisOrg.getObjectId());
                 startActivity(intent);
             }
         });
     }
 }
+

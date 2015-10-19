@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
                 defaultAddress = "" + latitude + "," + longitude;
             }
         }
-        Log.e("Upen", defaultAddress);
+//        Log.e("Upen", defaultAddress);
         setContentView(R.layout.activity_main);
         if (ParseUser.getCurrentUser() == null){
             finish();

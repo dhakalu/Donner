@@ -83,6 +83,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Donate"
+            android:background="#0000"
+            android:textColor="@color/colorPrimaryDark"
+            style="?android:attr/borderlessButtonStyle"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="48dp" />
