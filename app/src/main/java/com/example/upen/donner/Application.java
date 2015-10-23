@@ -13,7 +13,6 @@ public class Application extends android.app.Application {
     public void onCreate() {
         super.onCreate();
         ParseObject.registerSubclass(Organization.class);
-        //Parse.initialize(this, "e4zSvaDk4Lwk65KwPtdnIFwA63aNjvGp0uNfHJXS", "QBFe3b3HeMouEwkv1gSSSJVFatKInG55piacpMfV");
         Parse.initialize(this, "QvZyNN8pgKy6XU8PteP6qoXu5V7sP7G5ZVZ4BBCo", "RJKaftWPPn2P4MHYKIQ8zUvsdPuQznqwSJUMfKKE");
 
     }
